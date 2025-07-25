@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-In-One Portal | K.G.Srisanth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+        
+        body {
+            background: linear-gradient(-45deg, #6a11cb, #2575fc, #1cb5e0, #2af598);
+            background-size: 400% 400%;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: gradientBG 12s ease infinite;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #f5f5f5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .presented-by {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            color: #fff;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            animation: slideIn 0.8s ease-in-out;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 15px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .apps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 30px 0;
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: popIn 0.5s ease-in-out;
+            animation-fill-mode: both;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .app-icon {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .app-card:hover .app-icon {
+            transform: scale(1.2);
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+        
+        .app-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* APP ICON COLORS */
+        .chrome { color: #4285F4; }
+        .google { color: #34A853; }
+        .whatsapp { color: #25D366; }
+        .instagram { color: #E1306C; }
+        .youtube { color: #FF0000; }
+        .flipkart { color: #2874F0; }
+        .amazon { color: #FF9900; }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ANIMATIONS */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* DELAYED CARD ANIMATIONS */
+        .app-card:nth-child(1) { animation-delay: 0.1s; }
+        .app-card:nth-child(2) { animation-delay: 0.2s; }
+        .app-card:nth-child(3) { animation-delay: 0.3s; }
+        .app-card:nth-child(4) { animation-delay: 0.4s; }
+        .app-card:nth-child(5) { animation-delay: 0.5s; }
+        .app-card:nth-child(6) { animation-delay: 0.6s; }
+        .app-card:nth-child(7) { animation-delay: 0.7s; }
+        
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .apps-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .presented-by { font-size: 1rem; }
+            .app-card { padding: 20px 10px; }
+            .app-icon { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>All-In-One Portal</h1>
+            <p class="presented-by">Presented By: K.G.Srisanth</p>
+            <p class="tagline">Access all your favorite services in one place!</p>
+        </header>
+        
+        <div class="apps-container">
+            <div class="app-card" onclick="window.open('https://www.google.com', '_blank')">
+                <div class="app-icon google">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="app-name">Google</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://www.google.com/chrome/', '_blank')">
+                <div class="app-icon chrome">
+                    <i class="fab fa-chrome"></i>
+                </div>
+                <div class="app-name">Chrome</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://web.whatsapp.com', '_blank')">
+                <div class="app-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="app-name">WhatsApp</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://www.instagram.com', '_blank')">
+                <div class="app-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="app-name">Instagram</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://www.youtube.com', '_blank')">
+                <div class="app-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="app-name">YouTube</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://www.flipkart.com', '_blank')">
+                <div class="app-icon flipkart">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="app-name">Flipkart</div>
+            </div>
+            
+            <div class="app-card" onclick="window.open('https://www.amazon.com', '_blank')">
+                <div class="app-icon amazon">
+                    <i class="fab fa-amazon"></i>
+                </div>
+                <div class="app-name">Amazon</div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        &copy; 2023 All-In-One Portal | Designed by K.G.Srisanth
+    </footer>
+
+    <script>
+        // Add click animation to cards
+        document.querySelectorAll('.app-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-10px) scale(1.05)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
