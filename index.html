@@ -110,6 +110,77 @@
             font-weight: 600;
         }
         
+        /* PIN MODAL STYLES */
+        .pin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .pin-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pin-box h2 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .pin-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+        
+        .pin-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .pin-submit {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .pin-submit:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        .pin-error {
+            color: #ff4757;
+            margin-top: 10px;
+            display: none;
+        }
+        
         /* APP ICON COLORS */
         .chrome { color: #4285F4; }
         .google { color: #34A853; }
@@ -202,7 +273,7 @@
                 <div class="app-name">WhatsApp</div>
             </div>
             
-            <div class="app-card" onclick="window.open('https://www.instagram.com', '_blank')">
+            <div class="app-card" id="instagramCard">
                 <div class="app-icon instagram">
                     <i class="fab fa-instagram"></i>
                 </div>
@@ -232,12 +303,66 @@
         </div>
     </div>
     
+    <!-- PIN ENTRY MODAL -->
+    <div class="pin-modal" id="pinModal">
+        <div class="pin-box">
+            <h2>Enter Instagram PIN</h2>
+            <input type="password" class="pin-input" id="pinInput" placeholder="Enter 6-digit PIN" maxlength="6">
+            <button class="pin-submit" id="pinSubmit">Submit</button>
+            <div class="pin-error" id="pinError">Incorrect PIN! Try again.</div>
+        </div>
+    </div>
+    
     <footer>
         &copy; 2023 All-In-One Portal | Designed by K.G.Srisanth
     </footer>
 
     <script>
-        // Add click animation to cards
+        // Instagram Lock Functionality
+        const instagramCard = document.getElementById('instagramCard');
+        const pinModal = document.getElementById('pinModal');
+        const pinInput = document.getElementById('pinInput');
+        const pinSubmit = document.getElementById('pinSubmit');
+        const pinError = document.getElementById('pinError');
+        
+        // Correct PIN (212608)
+        const CORRECT_PIN = "212608";
+        
+        instagramCard.addEventListener('click', function() {
+            pinModal.style.display = 'flex';
+            pinInput.focus();
+        });
+        
+        pinSubmit.addEventListener('click', function() {
+            if(pinInput.value === CORRECT_PIN) {
+                window.open('https://www.instagram.com', '_blank');
+                pinModal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
+            } else {
+                pinError.style.display = 'block';
+                pinInput.value = '';
+                pinInput.focus();
+            }
+        });
+        
+        // Close modal when clicking outside
+        pinModal.addEventListener('click', function(e) {
+            if(e.target === pinModal) {
+                pinModal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
+            }
+        });
+        
+        // Submit on Enter key
+        pinInput.addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') {
+                pinSubmit.click();
+            }
+        });
+        
+        // Add click animation to all cards
         document.querySelectorAll('.app-card').forEach(card => {
             card.addEventListener('click', function() {
                 this.style.transform = 'scale(0.95)';
