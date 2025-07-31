@@ -313,7 +313,7 @@
                 <div class="app-name">Spotify</div>
             </div>
             
-             <div class="app-card" onclick="window.open('https://www.instagram.com/', '_blank')">
+             <div class="app-card"
                 <div class="app-icon instagram">
                     <i class="fab fa-instagram"></i>
                 </div>
@@ -381,7 +381,7 @@
         
         pinSubmit.addEventListener('click', () => {
             if(pinInput.value === CORRECT_PIN) {
-                window.open('https://www.instagram.com', '_blank');
+                window.open('https://www.instagram.com/', '_blank');
                 pinModal.style.display = 'none';
                 pinInput.value = '';
                 pinError.style.display = 'none';
